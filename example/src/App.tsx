@@ -1,13 +1,20 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-kickbox';
+import { StyleSheet, Text, View } from 'react-native';
+import Kickbox from 'react-native-kickbox';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [result, setResult] = React.useState<string>();
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    const kb = new Kickbox('API_KEY_TEST');
+    kb.verify('bill.lumbergh@gamil.com')
+      .then((r) => {
+        setResult(JSON.stringify(r));
+      })
+      .catch((err) => {
+        setResult(JSON.stringify(err));
+      });
   }, []);
 
   return (
