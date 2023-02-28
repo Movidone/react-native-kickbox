@@ -11,11 +11,18 @@ npm install react-native-kickbox
 ## Usage
 
 ```js
-import { multiply } from 'react-native-kickbox';
+import Kickbox from 'react-native-kickbox';
 
 // ...
 
-const result = await multiply(3, 7);
+const kb = new Kickbox('API_KEY_TEST');
+kb.verify('bill.lumbergh@gamil.com')
+  .then((r) => {
+    setResult(JSON.stringify(r));
+  })
+  .catch((err) => {
+    setResult(JSON.stringify(err));
+  });
 ```
 
 ## Contributing
